@@ -76,6 +76,8 @@ export default {
                 alert("FAVOR PREENCHER CORRETAMENTE OS CAMPOS.");
                 return;
             }
+
+            this.$refs.form.reset();
         },
     },
 };
