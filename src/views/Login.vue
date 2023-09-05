@@ -1,7 +1,7 @@
 <template>
     <v-container class="fill-height">
         <v-row align="center" justify="center">
-            <v-col cols="3">
+            <v-col cols="6">
                 <v-card elevation="12" align="center" justify="center">
                     <v-form
                         @submit.prevent="verifyingUser"
