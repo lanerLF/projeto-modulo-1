@@ -14,30 +14,59 @@
                                 variant="outlined"
                                 rounded="xl"
                                 type="text"
+                                v-model="name"
+                                :rules="[
+                                    (value) =>
+                                        !!value < 3 ||
+                                        'O nome deve ter mais de 3 caracteres!',
+                                ]"
                             ></v-text-field>
                             <v-text-field
                                 label="Email"
                                 variant="outlined"
                                 rounded="xl"
                                 type="email"
+                                v-model="email"
+                                :rules="[
+                                    (value) =>
+                                        !!value || 'O email é obrigatório!',
+                                ]"
                             ></v-text-field>
                             <v-text-field
                                 label="Senha"
                                 variant="outlined"
                                 rounded="xl"
                                 type="password"
+                                v-model="password"
+                                :rules="[
+                                    (value) =>
+                                        !!value || 'A senha é obrigatória!',
+                                ]"
                             ></v-text-field>
                             <v-text-field
                                 label="Confirme a Senha"
                                 variant="outlined"
                                 rounded="xl"
                                 type="password"
+                                :rules="[
+                                    (value) =>
+                                        !!value ||
+                                        'Por favor, confirme sua senha!',
+                                    (value) =>
+                                        value == this.password ||
+                                        'As senhas precisam coincidir!',
+                                ]"
                             ></v-text-field>
                             <v-select
                                 label="Plano"
                                 variant="outlined"
                                 v-model="selected_item"
                                 :items="items"
+                                :rules="[
+                                    (value) =>
+                                        !!value ||
+                                        'Por favor, escolha um plano!',
+                                ]"
                             >
                             </v-select>
                         </v-container>
@@ -70,7 +99,21 @@ export default {
         return {
             selected_item: "Bronze",
             items: ["Bronze", "Prata", "Ouro"],
+            email: "",
+            password: "",
+            valid: false,
+            name: "",
         };
+    },
+    methods: {
+        async handleSignup() {
+            const { valid } = this.$refs.form.validate();
+
+            if (!valid) {
+                alert("FAVOR PREENCHA OS CAMPOS CORRETAMENTE!");
+                return;
+            }
+        },
     },
 };
 </script>
