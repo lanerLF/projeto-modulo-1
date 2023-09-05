@@ -9,12 +9,14 @@
                                 label="Email"
                                 variant="outlined"
                                 rounded="xl"
+                                v-model="email"
                             ></v-text-field>
 
                             <v-text-field
                                 label="Senha"
                                 variant="outlined"
                                 rounded="xl"
+                                v-model="password"
                             ></v-text-field>
                         </v-container>
 
@@ -42,6 +44,13 @@
     </v-container>
 </template>
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+        };
+    },
+};
 </script>
 <style scoped></style>
