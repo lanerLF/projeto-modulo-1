@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
             <v-app-bar :elevation="2">
                 <h1 class="ma-5">*nome do projeto*</h1>
                 <template v-slot:append>
+                    <RouterLink to="/students">Alunos</RouterLink>
                     <RouterLink to="/about">Sobre</RouterLink>
                     <RouterLink to="/">Logout</RouterLink>
                 </template>
