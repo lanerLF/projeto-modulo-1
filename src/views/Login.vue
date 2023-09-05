@@ -4,6 +4,7 @@
             <v-col cols="6">
                 <v-card elevation="12" align="center" justify="center">
                     <v-form
+                        ref="form"
                         @submit.prevent="handleLogin"
                         class="pa-5 d-flex flex-column align-center"
                     >
@@ -14,6 +15,10 @@
                                 rounded="xl"
                                 type="email"
                                 v-model="email"
+                                :rules="[
+                                    (value) =>
+                                        !!value || 'O email é obrigatório!',
+                                ]"
                             ></v-text-field>
 
                             <v-text-field
@@ -22,6 +27,10 @@
                                 rounded="xl"
                                 type="password"
                                 v-model="password"
+                                :rules="[
+                                    (value) =>
+                                        !!value || 'A senha é obrigatória!',
+                                ]"
                             ></v-text-field>
                         </v-container>
 
@@ -61,22 +70,11 @@ export default {
     },
     methods: {
         async handleLogin() {
-            try {
-                const response = await axios.post(
-                    "http://localhost:3000/sessions",
-                    {
-                        email: this.email,
-                        password: this.password,
-                    }
-                );
+            const { valid } = await this.$refs.form.validate();
 
-                if (response.data.token) {
-                    console.log(response.data);
-                } else {
-                    console.log(response.data);
-                }
-            } catch (error) {
-                console.error("Error: ", error);
+            if (!valid) {
+                alert("FAVOR PREENCHER CORRETAMENTE OS CAMPOS.");
+                return;
             }
         },
     },
