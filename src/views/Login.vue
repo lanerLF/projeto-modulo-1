@@ -12,7 +12,7 @@
                             ></v-text-field>
 
                             <v-text-field
-                                label="Password"
+                                label="Senha"
                                 variant="outlined"
                                 rounded="xl"
                             ></v-text-field>
