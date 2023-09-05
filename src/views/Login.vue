@@ -24,6 +24,7 @@
                             rounded="xl"
                             elevation="4"
                             density="compact"
+                            color="blue"
                             >Login</v-btn
                         >
                         <v-container>
