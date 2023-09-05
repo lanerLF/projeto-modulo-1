@@ -30,7 +30,7 @@
                         <v-container>
                             <p>
                                 Não possui uma conta?
-                                <RouterLink to="/about"
+                                <RouterLink to="/signup"
                                     >Cadastre-se!</RouterLink
                                 >
                             </p>
