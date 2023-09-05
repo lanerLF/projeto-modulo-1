@@ -4,7 +4,7 @@
             <v-col cols="6">
                 <v-card elevation="12" align="center" justify="center">
                     <v-form
-                        @submit.prevent="verifyingUser"
+                        @submit.prevent="handleLogin"
                         class="pa-5 d-flex flex-column align-center"
                     >
                         <v-container>
@@ -60,7 +60,7 @@ export default {
         };
     },
     methods: {
-        async verifyingUser() {
+        async handleLogin() {
             try {
                 const response = await axios.post(
                     "http://localhost:3000/sessions",
