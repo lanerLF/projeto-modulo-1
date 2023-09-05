@@ -14,7 +14,7 @@
                                 variant="outlined"
                                 rounded="xl"
                                 type="email"
-                                v-model="email"
+                                v-model="user.email"
                                 :rules="[
                                     (value) =>
                                         !!value || 'O email é obrigatório!',
@@ -26,7 +26,7 @@
                                 variant="outlined"
                                 rounded="xl"
                                 type="password"
-                                v-model="password"
+                                v-model="user.password"
                                 :rules="[
                                     (value) =>
                                         !!value || 'A senha é obrigatória!',
@@ -64,8 +64,10 @@ import axios from "axios";
 export default {
     data() {
         return {
-            email: "",
-            password: "",
+            user: {
+                email: "",
+                password: "",
+            },
         };
     },
     methods: {
@@ -75,6 +77,23 @@ export default {
             if (!valid) {
                 alert("FAVOR PREENCHER CORRETAMENTE OS CAMPOS.");
                 return;
+            }
+
+            try {
+                const axios_post = await axios.post(
+                    "http://localhost:3000/sessions",
+                    this.user
+                );
+                if (axios_post.status == 200) {
+                    localStorage.setItem(
+                        "user-info",
+                        JSON.stringify(axios_post.data)
+                    );
+
+                    this.$router.push("/dashboard");
+                }
+            } catch (error) {
+                alert(error);
             }
 
             this.$refs.form.reset();
