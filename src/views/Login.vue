@@ -12,6 +12,7 @@
                                 label="Email"
                                 variant="outlined"
                                 rounded="xl"
+                                type="email"
                                 v-model="email"
                             ></v-text-field>
 
@@ -19,6 +20,7 @@
                                 label="Senha"
                                 variant="outlined"
                                 rounded="xl"
+                                type="password"
                                 v-model="password"
                             ></v-text-field>
                         </v-container>
