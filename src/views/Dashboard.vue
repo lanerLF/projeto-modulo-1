@@ -12,9 +12,11 @@
                         <h3 class="py-4">
                             {{ dashboard_data.amount_students }} Alunos
                         </h3>
-                        <v-btn append-icon="mdi-plus" density="compact"
-                            >Adicionar</v-btn
-                        >
+                        <RouterLink to="/students">
+                            <v-btn append-icon="mdi-plus" density="compact"
+                                >Adicionar</v-btn
+                            >
+                        </RouterLink>
                     </v-container>
                     <v-container
                         class="d-flex flex-column align-start justify-center"
