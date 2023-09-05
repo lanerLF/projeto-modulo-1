@@ -26,6 +26,14 @@
                             density="compact"
                             >Login</v-btn
                         >
+                        <v-container>
+                            <p>
+                                Não possui uma conta?
+                                <RouterLink to="/about"
+                                    >Cadastre-se!</RouterLink
+                                >
+                            </p>
+                        </v-container>
                     </v-form>
                 </v-card>
             </v-col>
