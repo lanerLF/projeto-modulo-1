@@ -3,7 +3,10 @@
         <v-row align="center" justify="center">
             <v-col cols="3">
                 <v-card elevation="12" align="center" justify="center">
-                    <v-form class="pa-5 d-flex flex-column align-center">
+                    <v-form
+                        @submit.prevent="verifyingUser"
+                        class="pa-5 d-flex flex-column align-center"
+                    >
                         <v-container>
                             <v-text-field
                                 label="Email"
@@ -27,6 +30,7 @@
                             elevation="4"
                             density="compact"
                             color="blue"
+                            type="submit"
                             >Login</v-btn
                         >
                         <v-container>
@@ -44,12 +48,35 @@
     </v-container>
 </template>
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
             email: "",
             password: "",
         };
+    },
+    methods: {
+        async verifyingUser() {
+            try {
+                const response = await axios.post(
+                    "http://localhost:3000/sessions",
+                    {
+                        email: this.email,
+                        password: this.password,
+                    }
+                );
+
+                if (response.data.token) {
+                    console.log(response.data);
+                } else {
+                    console.log(response.data);
+                }
+            } catch (error) {
+                console.error("Error: ", error);
+            }
+        },
     },
 };
 </script>
