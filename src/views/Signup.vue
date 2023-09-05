@@ -94,6 +94,7 @@
     </v-container>
 </template>
 <script>
+import axios from "axios";
 export default {
     data() {
         return {
@@ -101,17 +102,40 @@ export default {
             items: ["Bronze", "Prata", "Ouro"],
             email: "",
             password: "",
-            valid: false,
             name: "",
         };
     },
     methods: {
         async handleSignup() {
-            const { valid } = this.$refs.form.validate();
+            const { valid } = await this.$refs.form.validate();
 
             if (!valid) {
                 alert("FAVOR PREENCHA OS CAMPOS CORRETAMENTE!");
                 return;
+            }
+            try {
+                const body = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    type_plan: this.selected_item,
+                };
+
+                const axios_post = await axios.post(
+                    "http://localhost:3000/users",
+                    body
+                );
+                console.log(axios_post);
+
+                if (axios_post.status == 201) {
+                    alert("Usuario cadastrado com sucesso!");
+                    this.$router.push("/");
+                }
+            } catch (error) {
+                alert(
+                    "Não foi possível cadastrar o usuário no momento.",
+                    error
+                );
             }
         },
     },
