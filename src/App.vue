@@ -6,6 +6,7 @@ import { RouterLink, RouterView } from "vue-router";
     <v-container class="ma-5">
         <v-layout>
             <v-app-bar :elevation="2">
+                <h1 class="ma-5">*nome do projeto*</h1>
                 <template v-slot:append>
                     <RouterLink to="/about">Sobre</RouterLink>
                 </template>
