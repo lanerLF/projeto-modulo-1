@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from "vue-router";
                 <h1 class="ma-5">*nome do projeto*</h1>
                 <template v-slot:append>
                     <RouterLink to="/about">Sobre</RouterLink>
+                    <RouterLink to="/">Logout</RouterLink>
                 </template>
             </v-app-bar>
         </v-layout>
@@ -18,4 +19,8 @@ import { RouterLink, RouterView } from "vue-router";
     </v-container>
 </template>
 
-<style scoped></style>
+<style scoped>
+a {
+    margin: 10px;
+}
+</style>
