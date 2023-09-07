@@ -12,7 +12,7 @@
                         <h3 class="py-4">
                             {{ dashboard_data.amount_students }} Alunos
                         </h3>
-                        <RouterLink to="/students">
+                        <RouterLink to="/create-student">
                             <v-btn append-icon="mdi-plus" density="compact"
                                 >Adicionar</v-btn
                             >
