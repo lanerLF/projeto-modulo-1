@@ -130,7 +130,10 @@ export default {
 
             const axios_get = await axios
                 .get(cep_path)
-                .then((data) => (this.cep_data = data.data));
+                .then((data) => (this.cep_data = data.data))
+                .catch((error) => {
+                    alert("Erro ao procurar cep.", error);
+                });
 
             console.log(axios_get);
 
