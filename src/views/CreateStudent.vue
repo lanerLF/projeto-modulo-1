@@ -158,7 +158,17 @@ export default {
                 complement: this.cep_data.complemento,
             };
 
-            const axios_post = await axios.post();
+            const axios_post = await axios
+                .post("http://localhost:3000/students", body)
+                .then((response) => {
+                    if (response.status == 201) {
+                        alert("Aluno cadastrado com sucesso!");
+                        this.$refs.form.reset();
+                    }
+                })
+                .catch((error) => {
+                    alert("Erro ao cadastrar aluno.", error);
+                });
         },
     },
 };
