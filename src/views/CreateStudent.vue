@@ -1,6 +1,7 @@
 <template>
     <div class="d-flex flex-column justify-center align-center">
         <v-form
+            ref="form"
             @submit.prevent="handle_submit"
             class="d-flex flex-row w-100 align-center justify-center"
         >
@@ -54,9 +55,8 @@
                         @click.prevent="handle_cep"
                         color="#1E90FF"
                         density="default"
-                        size="x-large"
-                        >Procurar</v-btn
-                    >
+                        icon="mdi-plus"
+                    ></v-btn>
                 </div>
                 <v-text-field
                     label="Logradouro"
@@ -96,7 +96,9 @@
                 ></v-text-field>
             </div>
         </v-form>
-        <v-btn color="#1E90FF" @click.prevent="handle_submit">Cadastrar</v-btn>
+        <v-btn color="#1E90FF" @click.prevent="handle_submit" size="x-large"
+            >Cadastrar</v-btn
+        >
     </div>
 </template>
 <script>
@@ -128,6 +130,13 @@ export default {
             console.log(this.cep_data);
         },
         async handle_submit() {
+            const { valid } = await this.$refs.form.validate();
+
+            if (!valid) {
+                alert("FAVOR PREENCHER CORRETAMENTE OS CAMPOS.");
+                return;
+            }
+
             const axios_post = await axios.post();
         },
     },
