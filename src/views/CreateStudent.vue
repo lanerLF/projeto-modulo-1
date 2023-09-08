@@ -1,6 +1,9 @@
 <template>
     <div class="d-flex flex-row justify-center align-center">
-        <v-form @submit.prevent="handle_submit">
+        <v-form
+            @submit.prevent="handle_submit"
+            class="d-flex flex-row w-100 align-center justify-center"
+        >
             <div class="ma-5">
                 <h2>Cadastro Novo Aluno</h2>
                 <div>
