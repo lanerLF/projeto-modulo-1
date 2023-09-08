@@ -63,12 +63,16 @@
                     placeholder="Logradouro"
                     variant="outlined"
                     v-model="cep_data.logradouro"
+                    :rules="[
+                        (value) => !!value || 'O Logradouro é obrigatório!',
+                    ]"
                 ></v-text-field>
                 <v-text-field
                     label="Número"
                     placeholder="Número"
                     variant="outlined"
                     v-model="cep_number"
+                    :rules="[(value) => !!value || 'O Número é obrigatório!']"
                 ></v-text-field>
                 <v-text-field
                     label="Complemento"
@@ -81,18 +85,21 @@
                     placeholder="Estado"
                     variant="outlined"
                     v-model="cep_data.uf"
+                    :rules="[(value) => !!value || 'O Estado é obrigatório!']"
                 ></v-text-field>
                 <v-text-field
                     label="Cidade"
                     placeholder="Cidade"
                     variant="outlined"
                     v-model="cep_data.localidade"
+                    :rules="[(value) => !!value || 'A cidade é obrigatória!']"
                 ></v-text-field>
                 <v-text-field
                     label="Bairro"
                     placeholder="Bairro"
                     variant="outlined"
                     v-model="cep_data.bairro"
+                    :rules="[(value) => !!value || 'O Bairro é obrigatório!']"
                 ></v-text-field>
             </div>
         </v-form>
@@ -136,6 +143,20 @@ export default {
                 alert("FAVOR PREENCHER CORRETAMENTE OS CAMPOS.");
                 return;
             }
+
+            const body = {
+                name: this.name,
+                email: this.email,
+                contact: this.phone_number,
+                date_birth: this.birthdate,
+                cep: this.cep,
+                street: this.cep_data.logradouro,
+                number: this.cep_number,
+                neighborhood: this.cep_data.bairro,
+                city: this.cep_data.localidade,
+                province: this.cep_data.uf,
+                complement: this.cep_data.complemento,
+            };
 
             const axios_post = await axios.post();
         },
