@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-row justify-center align-center">
+    <div class="d-flex flex-column justify-center align-center">
         <v-form
             @submit.prevent="handle_submit"
             class="d-flex flex-row w-100 align-center justify-center"
@@ -96,6 +96,7 @@
                 ></v-text-field>
             </div>
         </v-form>
+        <v-btn color="#1E90FF" @click.prevent="handle_submit">Cadastrar</v-btn>
     </div>
 </template>
 <script>
