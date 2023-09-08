@@ -123,6 +123,9 @@ export default {
 
             console.log(this.cep_data);
         },
+        async handle_submit() {
+            const axios_post = await axios.post();
+        },
     },
 };
 </script>
