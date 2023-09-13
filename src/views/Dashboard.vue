@@ -24,9 +24,11 @@
                         <h3 class="py-4">
                             {{ dashboard_data.amount_exercises }} Exercícios
                         </h3>
+                      <RouterLink to="/create-exercise">
                         <v-btn append-icon="mdi-plus" density="compact"
                             >Adicionar</v-btn
                         >
+                      </RouterLink>  
                     </v-container>
                 </v-container>
             </v-card>
