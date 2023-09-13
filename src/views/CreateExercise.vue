@@ -12,7 +12,7 @@
             v-model="exercise_name"
             :rules="[value => !!value || 'O campo deve ser preenchido corretamente!']"
             ></v-text-field>
-          <v-btn size="x-large" color="#1e90ff" class="px-2 mx-5 text-center" >Cadastrar</v-btn>
+          <v-btn type="submit" size="x-large" color="#1e90ff" class="px-2 mx-5 text-center" >Cadastrar</v-btn>
         </v-form>
       </div>
     </div>
