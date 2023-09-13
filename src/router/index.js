@@ -34,6 +34,11 @@ const router = createRouter({
             name: "create-student",
             component: () => import("../views/CreateStudent.vue"),
         },
+        {
+            path: "/create-exercise",
+            name: "create-exercise",
+            component: () => import("../views/CreateExercise.vue"),
+        },
     ],
 });
 
