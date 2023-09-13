@@ -32,7 +32,7 @@ export default {
      if (!valid) {
        alert("PREENCHA OS CAMPOS CORRETAMENTE ANTES DE CADASTRAR!")
        return;
-     }
+    }
 
     }
   }
