@@ -18,7 +18,19 @@
     </div>
   </div>
 </template>
-<script> 
+<script>
+export default {
+    data(){
+      return{
+        exercise_name: "",
+      }
+    },
+  methods: {
+    handle_submit(){
+
+    }
+  }
+}
 </script>
 <style scoped>
 </style>
