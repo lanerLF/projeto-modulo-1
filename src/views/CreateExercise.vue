@@ -26,10 +26,10 @@
             >Cadastrar</v-btn
           >
         </v-form>
-        <table>
+        <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Nome do exercício</th>
+              <th scope="col">Nome do exercício</th>
             </tr>
           </thead>
           <tbody>
