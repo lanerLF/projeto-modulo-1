@@ -26,7 +26,18 @@
             >Cadastrar</v-btn
           >
         </v-form>
-        {{ exercise_data }}
+        <table>
+          <thead>
+            <tr>
+              <th>Nome do exercício</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in exercise_data" :key="item.id">
+              <td>{{ item.description }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -53,21 +64,27 @@ export default {
           description: this.exercise_name,
         };
 
-        const axios_post = axios.post("http://localhost:3000/exercises", body);
+        const axios_post = await axios.post(
+          "http://localhost:3000/exercises",
+          body
+        );
 
         alert("Exercicio cadastrado com sucesso.");
 
-        this.$router.go(0);
+        this.update_exercises();
       } catch (error) {
         alert("Falha ao cadastrar exercício.", error);
       }
     },
+    async update_exercises() {
+      const axios_get = await axios
+        .get("http://localhost:3000/exercises")
+        .then((res) => (this.exercise_data = res.data))
+        .catch((error) => console.log(error));
+    },
   },
   mounted() {
-    const axios_get = axios
-      .get("http://localhost:3000/exercises")
-      .then((res) => (this.exercise_data = res.data))
-      .catch((error) => console.log(error));
+    this.update_exercises();
   },
 };
 </script>
