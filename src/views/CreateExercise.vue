@@ -26,15 +26,18 @@
             >Cadastrar</v-btn
           >
         </v-form>
+        {{ exercise_data }}
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       exercise_name: "",
+      exercise_data: {},
     };
   },
   methods: {
@@ -45,7 +48,26 @@ export default {
         alert("PREENCHA OS CAMPOS CORRETAMENTE ANTES DE CADASTRAR!");
         return;
       }
+      try {
+        const body = {
+          description: this.exercise_name,
+        };
+
+        const axios_post = axios.post("http://localhost:3000/exercises", body);
+
+        alert("Exercicio cadastrado com sucesso.");
+
+        this.$router.go(0);
+      } catch (error) {
+        alert("Falha ao cadastrar exercício.", error);
+      }
     },
+  },
+  mounted() {
+    const axios_get = axios
+      .get("http://localhost:3000/exercises")
+      .then((res) => (this.exercise_data = res.data))
+      .catch((error) => console.log(error));
   },
 };
 </script>
