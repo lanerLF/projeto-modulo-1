@@ -85,7 +85,13 @@ export default {
       });
     },
     async handle_submit() {
-      console.log(this.selected_item);
+      const { valid } = await this.$refs.form.validate();
+
+      if (!valid) {
+        alert("PREENCHA OS CAMPOS CORRETAMENTE.");
+        return
+      }
+
     },
   },
   mounted() {
