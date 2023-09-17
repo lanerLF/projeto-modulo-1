@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from "vue-router";
   <v-container class="ma-5">
     <v-layout>
       <v-app-bar :elevation="2">
-        <h1 class="ma-5">*nome do projeto*</h1>
+        <h1 class="ma-5">Laner Treinos</h1>
         <template v-slot:append>
           <RouterLink to="/dashboard">Dashboard</RouterLink>
           <RouterLink to="/manage-exercises">Exercícios</RouterLink>
