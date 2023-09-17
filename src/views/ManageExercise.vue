@@ -136,12 +136,8 @@ export default {
       };
       const axios_post = await axios
         .post("http://localhost:3000/workouts", body)
-        .then((res) => {
-          if (res.status >= 200 && res.status < 300) {
-            alert("TREINO CADASTRADO COM SUCESSO.");
-            console.log(res.status);
-            console.log(body);
-          }
+        .then(axios_post => {
+          console.log(axios_post.status)
         })
         .catch((error) => {
           alert("FALHA AO CADASTRAR", error);
