@@ -35,6 +35,7 @@
         label="Quilos"
         placeholder="Quilos..."
         v-model="kilograms"
+        type="number"
         :rules="[(value) => !!value || 'O campo deve ser preenchido!']"
       ></v-text-field>
       <v-text-field
@@ -43,6 +44,7 @@
         label="Pausa"
         placeholder="Pausa..."
         v-model="pause"
+        type="time"
         :rules="[(value) => !!value || 'O campo deve ser preenchido!']"
       ></v-text-field>
       <v-text-field
@@ -53,6 +55,14 @@
         v-model="week_day"
         :rules="[(value) => !!value || 'O campo deve ser preenchido!']"
       ></v-text-field>
+      <v-textarea
+        class="mw-100 w-50"
+        label="Observações"
+        placeholder="Observações..."
+        clearable
+        variant="outlined"
+        v-model="observations"
+        ></v-textarea>
       <v-btn type="submit" color="#1e90ff" >Cadastrar</v-btn>
     </v-form>
   </div>
@@ -70,6 +80,7 @@ export default {
       kilograms: 0,
       pause: "",
       week_day: "",
+      observations: "",
     };
   },
   methods: {
