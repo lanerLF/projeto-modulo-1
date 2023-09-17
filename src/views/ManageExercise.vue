@@ -47,14 +47,15 @@
         type="time"
         :rules="[(value) => !!value || 'O campo deve ser preenchido!']"
       ></v-text-field>
-      <v-text-field
+      <v-select
         class="mw-100 w-50"
         variant="outlined"
         label="Dia da semana"
         placeholder="Dia da semana..."
         v-model="week_day"
+        :items="week_day_list"
         :rules="[(value) => !!value || 'O campo deve ser preenchido!']"
-      ></v-text-field>
+      ></v-select>
       <v-textarea
         class="mw-100 w-50"
         label="Observações"
@@ -62,8 +63,8 @@
         clearable
         variant="outlined"
         v-model="observations"
-        ></v-textarea>
-      <v-btn type="submit" color="#1e90ff" >Cadastrar</v-btn>
+      ></v-textarea>
+      <v-btn type="submit" color="#1e90ff">Cadastrar</v-btn>
     </v-form>
   </div>
 </template>
@@ -72,15 +73,23 @@ import axios from "axios";
 export default {
   data() {
     return {
-      exercise_name: "",
       exercise_data: {},
       exercise_list: [],
       selected_item: null,
       repetitions: 0,
       kilograms: 0,
       pause: "",
-      week_day: "",
+      week_day: new Date(),
       observations: "",
+      week_day_list: [
+        "Segunda-feira",
+        "Terça-feira",
+        "Quarta-feira",
+        "Quinta-feira",
+        "Sexta-feita",
+        "Sábado",
+        "Domingo",
+      ],
     };
   },
   methods: {
@@ -89,9 +98,7 @@ export default {
         .get("http://localhost:3000/exercises")
         .then((res) => (this.exercise_data = res.data))
         .catch((error) => alert(error));
-      console.log(this.exercise_data);
       this.exercise_list = this.exercise_data.map((item) => {
-        console.log(item.description);
         return item.description;
       });
     },
@@ -100,13 +107,53 @@ export default {
 
       if (!valid) {
         alert("PREENCHA OS CAMPOS CORRETAMENTE.");
-        return
+        return;
       }
-
+      if (this.week_day == "Segunda-feira") {
+        return (this.week_day = "segunda");
+      } else if (this.week_day == "Terça-feira") {
+        return (this.week_day = "terca");
+      } else if (this.week_day == "Quarta-feira") {
+        return (this.week_day = "quarta");
+      } else if (this.week_day == "Quinta-feira") {
+        return (this.week_day = "quinta");
+      } else if (this.week_day == "Sexta-feira") {
+        return (this.week_day = "sexta");
+      } else if (this.week_day == "Sábado") {
+        return (this.week_day = "sabado");
+      } else if (this.week_day == "Domingo") {
+        return (this.week_day = "domingo");
+      }
+      const user_data = JSON.parse(localStorage.getItem("user-info")) || null;
+      const body = {
+        student_id: user_data.name,
+        exercise_id: this.selected_item,
+        repetitions: this.repetitions,
+        weight: this.kilograms,
+        break_time: this.pause,
+        observations: this.observations,
+        day: this.weekday,
+      };
+      const axios_post = await axios
+        .post("http://localhost:3000/workouts", body)
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            alert("TREINO CADASTRADO COM SUCESSO.");
+            console.log(res.status);
+            console.log(body);
+          }
+        })
+        .catch((error) => {
+          alert("FALHA AO CADASTRAR", error);
+        });
     },
   },
   mounted() {
     this.handle_get();
+
+    this.week_day = new Date().toLocaleDateString("PT", { weekday: "long" });
+    this.week_day =
+      this.week_day.charAt(0).toUpperCase() + this.week_day.slice(1);
   },
 };
 </script>
