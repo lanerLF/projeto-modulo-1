@@ -10,6 +10,7 @@ import { RouterLink, RouterView } from "vue-router";
         <template v-slot:append>
           <RouterLink to="/dashboard">Dashboard</RouterLink>
           <RouterLink to="/manage-exercises">Exercícios</RouterLink>
+          <RouterLink to="/manage-workouts">Treinos</RouterLink>
           <RouterLink to="/students">Alunos</RouterLink>
           <RouterLink to="/about">Sobre</RouterLink>
           <RouterLink to="/">Logout</RouterLink>
